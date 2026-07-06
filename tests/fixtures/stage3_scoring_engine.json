@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0",
+  "stage": "sub-scoring-engine",
+  "inherited_from": "sub-requirements-gatherer",
+  "evidence_sources": [
+    {"id":"S1","title":"NFPA 101 Life Safety Code","doi_or_url":"https://www.nfpa.org/codes-and-standards/nfpa-101-standard-development/101","tier":"guideline"},
+    {"id":"S2","title":"OSHA 1910.38","doi_or_url":"https://www.ecfr.gov/current/title-29/section-1910.38","tier":"guideline"},
+    {"id":"S3","title":"NIST TN 1689 high-rise evacuation","doi_or_url":"https://doi.org/10.6028/NIST.TN.1689","tier":"rct"}
+  ],
+  "scores": [
+    {"dimension":"regulatory_compliance","score":82,"justification":"EAP documented, minor training gap","citation":"29 CFR 1910.38(d)","confidence":"high"},
+    {"dimension":"response_time","score":71,"justification":"6 min vs benchmark; margin under 30%","citation":"NIST TN 1689","confidence":"medium"},
+    {"dimension":"communication","score":78,"justification":"horn+voice+wardens present","citation":"NFPA 1600 §5","confidence":"high"},
+    {"dimension":"evacuation_effectiveness","score":80,"justification":"88% accounted; stairwell congestion on upper floors","citation":"NFPA 101","confidence":"medium"},
+    {"dimension":"gap_closure","score":55,"justification":"prior gaps logged but not closed","citation":"ISO 45001:2018 §10","confidence":"low"}
+  ],
+  "composite_index": 74.9,
+  "top_findings": {"positives":["voice+warden cascade present","EAP documented"],"negatives":["gap-closure cycle absent","stairwell congestion upper floors"]},
+  "roadmap": [
+    {"action":"Add HFACS-based gap tracking","dimension":"gap_closure","effort":2,"impact":5,"owner":"EHS Manager","expected_effect":"close loop on prior findings","rationale":"ISO 45001 §10 requires closure"},
+    {"action":"Increase stairwell egress capacity / phased evacuation","dimension":"evacuation_effectiveness","effort":4,"impact":4,"owner":"Facilities","expected_effect":"reduce upper-floor congestion","rationale":"NFPA 101 egress capacity"}
+  ],
+  "assumptions": ["benchmark from NIST TN 1689"],
+  "confidence": "medium",
+  "limitations": ["WebSearch unavailable; used knowledge base §2"]
+}

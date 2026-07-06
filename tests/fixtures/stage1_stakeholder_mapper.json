@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0",
+  "stage": "sub-stakeholder-mapper",
+  "request_summary": "12-floor office tower fire-evacuation drill, 6-min evacuation, ~600 occupants.",
+  "facility": {"type": "office", "floors": 12, "occupancy": 600, "jurisdiction": "US-OSHA"},
+  "drill": {
+    "type": "fire-evacuation",
+    "objectives": ["Measure evacuation time", "Validate accountability"],
+    "observed_evacuation_time_min": 6,
+    "alarms_used": ["horn", "voice"],
+    "participation_rate_pct": 88
+  },
+  "roles": [
+    {"name": "Incident Commander", "role_type": "incident-commander", "responsibilities": ["coordinate"], "raci_phases": {"alarm":"A","notification":"A","evacuation":"A","assembly":"A","accountability":"A","all_clear":"A"}, "present_in_drill": true, "framework_ref": "NFPA 1600 §5"},
+    {"name": "Floor Wardens", "role_type": "floor-warden", "responsibilities": ["sweep floors"], "raci_phases": {"alarm":"C","notification":"R","evacuation":"R","assembly":"R","accountability":"A","all_clear":"I"}, "present_in_drill": true, "framework_ref": "OSHA 29 CFR 1910.38(e)(3)"}
+  ],
+  "missing_roles": ["First-aiders (no documented responder)"],
+  "assumptions": ["occupancy inferred from floor count"],
+  "confidence": "medium",
+  "frameworks_applied": ["OSHA 29 CFR 1910.38", "NFPA 1600"]
+}

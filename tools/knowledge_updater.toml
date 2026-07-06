@@ -1,0 +1,54 @@
+# knowledge_updater.toml — configuration for tools/knowledge_updater.py
+# Edit queries/sources/keywords here; CLI flags override these values.
+
+since = "1970-01-01"          # only keep entries dated after this (YYYY-MM-DD)
+min_score = 0.30              # drop entries with combined score below this
+max_per_source = 25           # cap results kept per source API per run
+timeout_seconds = 30          # per-request HTTP timeout
+concurrency = 4               # max concurrent API requests
+user_agent = "workplace-safety-drill-evaluator/1.0 (+https://github.com/) knowledge-updater"
+
+# APIs that are queried first (structured, no scraping). Each entry is a callable source.
+api_sources = ["crossref", "arxiv", "semantic_scholar"]
+
+# Optional heavy crawl sources (require `pip install -e .[crawl]`). Skipped if unavailable.
+crawl_sources = []
+
+queries = [
+  "evacuation drill effectiveness metrics",
+  "OSHA emergency action plan compliance",
+  "ISO 45001 audit findings",
+  "fire drill response time benchmark",
+  "HAZWOPER drill evaluation",
+  "defend in place evacuation healthcare",
+  "HFACS drill root cause",
+]
+
+domain_keywords = [
+  "evacuation drill",
+  "regulatory compliance",
+  "response time",
+  "communication",
+  "evacuation effectiveness",
+  "gap closure",
+  "OSHA",
+  "NFPA",
+  "ISO 45001",
+  "HAZWOPER",
+  "RSET",
+  "ASET",
+]
+
+# Crossref filters: restrict to safety-relevant ISSN and recent content.
+[crossref]
+issn_filter = "0925-7535"  # Safety Science
+rows = 25
+mailto = "knowledge-updater@example.org"  # polite-pool email for Crossref
+
+[arxiv]
+max_results = 25
+categories = ["safety-rh"]  # arXiv has no safety category; left as a no-op list
+
+[semantic_scholar]
+limit = 25
+fields = "title,authors,year,venue,externalIds,abstract"

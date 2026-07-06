@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "stage": "sub-quality-reviewer",
+  "inherited_from": "sub-scoring-engine",
+  "revisions": [
+    {"target":"score:communication","change":"unchanged","reason":"warden cascade confirmed"},
+    {"target":"composite_index","change":"recomputed to 74.9","reason":"weight check"}
+  ],
+  "attacks": [
+    {"attack":"6-min time may understate pre-movement on upper floors","target":"score:response_time","resolution":"rebutted","evidence":"NIST TN 1689 supports 6 min for 12 floors"},
+    {"attack":"88% accountability <95% benchmark","target":"score:evacuation_effectiveness","resolution":"revised","evidence":"capped at 80"},
+    {"attack":"no gap-closure evidence","target":"score:gap_closure","resolution":"revised","evidence":"capped at 55"}
+  ],
+  "gate_checklist": {
+    "framework_selection_justified":"pass",
+    "every_score_cited":"pass",
+    "roadmap_has_effort_impact_rationale":"pass",
+    "assumptions_confidence_limitations_stated":"pass",
+    "devils_advocate_completed":"pass"
+  },
+  "final_scores": [
+    {"dimension":"regulatory_compliance","score":82,"justification":"EAP documented, minor training gap","citation":"29 CFR 1910.38(d)","confidence":"high"},
+    {"dimension":"response_time","score":71,"justification":"6 min vs benchmark; margin under 30%","citation":"NIST TN 1689","confidence":"medium"},
+    {"dimension":"communication","score":78,"justification":"horn+voice+wardens present","citation":"NFPA 1600 §5","confidence":"high"},
+    {"dimension":"evacuation_effectiveness","score":80,"justification":"88% accounted; stairwell congestion","citation":"NFPA 101","confidence":"medium"},
+    {"dimension":"gap_closure","score":55,"justification":"prior gaps logged not closed","citation":"ISO 45001:2018 §10","confidence":"low"}
+  ],
+  "final_composite_index": 74.9,
+  "final_roadmap": [
+    {"action":"Add HFACS-based gap tracking","dimension":"gap_closure","effort":2,"impact":5,"owner":"EHS Manager","expected_effect":"close loop on prior findings","rationale":"ISO 45001 §10 requires closure"},
+    {"action":"Increase stairwell egress capacity / phased evacuation","dimension":"evacuation_effectiveness","effort":4,"impact":4,"owner":"Facilities","expected_effect":"reduce upper-floor congestion","rationale":"NFPA 101 egress capacity"}
+  ],
+  "evidence_sources": [
+    {"id":"S1","title":"NFPA 101 Life Safety Code","doi_or_url":"https://www.nfpa.org/codes-and-standards/nfpa-101-standard-development/101","tier":"guideline"}
+  ],
+  "assumptions": ["benchmark from NIST TN 1689"],
+  "confidence": "medium",
+  "limitations": ["WebSearch unavailable; used knowledge base §2"]
+}

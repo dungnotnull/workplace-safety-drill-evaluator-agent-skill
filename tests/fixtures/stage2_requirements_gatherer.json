@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0",
+  "stage": "sub-requirements-gatherer",
+  "inherited_from": "sub-stakeholder-mapper",
+  "hazards": [{"class": "egress-congestion","description":"stairwell congestion on floors 8-12","severity":"med"}],
+  "jurisdiction": "US-OSHA",
+  "frameworks": [
+    {"name":"NFPA 101 Life Safety Code","role":"primary","justification":"office high-rise fire egress","citation":"NFPA 101 (current ed.)"},
+    {"name":"OSHA 29 CFR 1910.38","role":"secondary","justification":"EAP accountability","citation":"29 CFR 1910.38"}
+  ],
+  "requirements": [
+    {"id":"R1","dimension":"regulatory_compliance","criterion":"EAP documented & current","framework_ref":"29 CFR 1910.38","pass_condition":"EAP on file","benchmark":null},
+    {"id":"R2","dimension":"response_time","criterion":"RSET < ASET with margin","framework_ref":"SFPE / NIST TN 1689","pass_condition":"margin>=30%","benchmark":30},
+    {"id":"R3","dimension":"communication","criterion":"voice+alarm+warden cascade","framework_ref":"NFPA 1600 §5","pass_condition":"all channels","benchmark":null},
+    {"id":"R4","dimension":"evacuation_effectiveness","criterion":"egress capacity per NFPA 101","framework_ref":"NFPA 101","pass_condition":">=95% accounted","benchmark":95},
+    {"id":"R5","dimension":"gap_closure","criterion":"prior gaps tracked","framework_ref":"ISO 45001 §10","pass_condition":"closed & verified","benchmark":null}
+  ],
+  "scoring_weights": {
+    "regulatory_compliance": 0.20,
+    "response_time": 0.30,
+    "communication": 0.15,
+    "evacuation_effectiveness": 0.25,
+    "gap_closure": 0.10
+  },
+  "assumptions": ["RSET benchmark from NIST TN 1689"],
+  "confidence": "medium",
+  "limitations": ["WebSearch unavailable; used SECOND-KNOWLEDGE-BRAIN.md §2"]
+}
